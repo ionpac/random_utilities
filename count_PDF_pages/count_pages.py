@@ -49,7 +49,7 @@ for file in files:
 
 print("".join([ "=" for a in range(60)]))
 
-print("SUM{}: {}".format(" approx." if failed else "", total_pages))
+print("SUM: {}{}".format("at least " if failed else "", total_pages))
 
 if(failed):
-	print("some files could not be counted")
+	print("some files could not be counted (for no good reason)")
