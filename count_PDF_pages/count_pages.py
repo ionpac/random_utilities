@@ -44,7 +44,7 @@ for file in files:
 	except KeyboardInterrupt:
 		exit()
 	except:
-		print("{} failed".format(file[1]))
+		print("{}     FAILED".format(file[1]))
 		failed = True
 
 print("".join([ "=" for a in range(60)]))
