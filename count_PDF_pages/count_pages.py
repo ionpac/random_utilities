@@ -10,7 +10,7 @@ if len(argv) < 2:
 	exit()
 
 path = argv[1].strip('"') # trailing backslashes can escape the " character
-print("root path: {}".format(path))
+print("Counting in directory: {}".format(path))
 
 rx = None
 if len(argv) >= 3:
@@ -28,8 +28,6 @@ def get_pdf_files(path):
 	return result
 
 files = [(path, path),] if os.path.isfile(path) and path.lower().endswith(".pdf") else get_pdf_files(path)
-
-print(files)
 
 failed = False
 
