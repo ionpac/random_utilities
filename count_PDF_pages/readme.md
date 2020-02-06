@@ -1,7 +1,7 @@
 ## Count PDF
 _A python script that counts the pages of all the pdf files inside a directory and its subdirectories._
 
-### Prequisites
+### Prerequisites
 - Python 2 or 3  
 - pip  
 - PyPDF2 from pip: `pip install PyPDF2`
