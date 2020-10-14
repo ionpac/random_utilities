@@ -21,25 +21,34 @@ function selectResult(newId){
 	el.scrollIntoView({block: "center", behavior: "auto"});
 }
 
+function isSearchBarFocused() {
+	return document.activeElement.name == "q"
+}
+
 document.onkeyup=function(event){
 	if(event.keyCode==27) {
+		//escape
 		document.selectedResultId=null
 		rp = document.getElementById("result-pointer")
 		if(rp != null){
 			rp.remove()
 		}
 	}
-	if(document.selectedResultId != null) {
+	if(document.selectedResultId != null && !isSearchBarFocused()) {
 		if(event.keyCode >= 49 && event.keyCode <= 57) {
+			// number keys
 			selectResult(event.keyCode-49)
 		}
 		if(event.keyCode==38 || event.keyCode==37) {
+			// up or left arrow
 			selectResult(document.selectedResultId-1)
 		}
 		if(event.keyCode==40 || event.keyCode==39) {
+			// down or right arrow
 			selectResult(document.selectedResultId+1)
 		}
 		if(event.keyCode==13) {
+			// enter
 			rp = document.getElementById("result-pointer")
 			if(rp != null) {
 				var url = rp.parentElement.parentElement.href
