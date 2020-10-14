@@ -3,6 +3,7 @@
 from PyPDF2 import PdfFileReader
 import os
 from sys import argv
+import sys
 import re
 
 if len(argv) < 2:
@@ -35,13 +36,17 @@ total_pages = 0
 for file in files:
 	
 	try:
-		reader = PdfFileReader(open(file[0], 'rb'))
+		sys.stdout = open(os.devnull, "w")
+		sys.stderr = open(os.devnull, "w")
+		reader = PdfFileReader(open(file[0], 'rb'))		
 		pages = reader.getNumPages()
+		sys.stdout = sys.__stdout__
+		sys.stderr = sys.__stderr__
 		print("{} {} pages".format(file[1], pages))
 		total_pages += pages
 	except KeyboardInterrupt:
 		exit()
-	except:
+	except Exception as ex:
 		print("{}     FAILED".format(file[1]))
 		failed = True
 
