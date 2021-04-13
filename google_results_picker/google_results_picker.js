@@ -70,8 +70,7 @@ document.onkeyup=function(event){
 			rp.remove()
 		}
 		enableScroll()
-	}
-	if(document.selectedResultId != null && !isSearchBarFocused()) {
+	} else if(document.selectedResultId != null && !isSearchBarFocused()) {
 		if(event.keyCode >= 49 && event.keyCode <= 57) {
 			// number keys
 			selectResult(event.keyCode-49)
@@ -98,6 +97,10 @@ document.onkeyup=function(event){
 				}
 			}
 		}	
+	} else if(event.keyCode==9) {
+		document.selectedResultId=0
+		selectResult(0)
+		disableScroll()
 	}
 }
 if(document.selectedResultId==null) {
