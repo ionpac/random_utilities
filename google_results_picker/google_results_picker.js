@@ -1,7 +1,7 @@
 resultElementSelector = "div h3.LC20lb"
 
 // left: 37, up: 38, right: 39, down: 40
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+var keys = {38: 1, 40: 1};
 
 function preventDefault(e) {
   e.preventDefault();
@@ -75,12 +75,12 @@ document.onkeyup=function(event){
 			// number keys
 			selectResult(event.keyCode-49)
 		}
-		if(event.keyCode==38 || event.keyCode==37) {
-			// up or left arrow
+		if(event.keyCode==38) {
+			// up
 			selectResult(document.selectedResultId-1)
 		}
-		if(event.keyCode==40 || event.keyCode==39) {
-			// down or right arrow
+		if(event.keyCode==40) {
+			// down
 			selectResult(document.selectedResultId+1)
 		}
 		if(event.keyCode==13) {
