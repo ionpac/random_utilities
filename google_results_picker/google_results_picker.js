@@ -2,6 +2,7 @@ resultElementSelector = "div h3.LC20lb"
 
 // left: 37, up: 38, right: 39, down: 40
 var keys = {38: 1, 40: 1};
+var select_search_key = 76; // L
 
 function preventDefault(e) {
   e.preventDefault();
@@ -96,7 +97,11 @@ document.onkeyup=function(event){
 					document.location = url
 				}
 			}
-		}	
+		}
+		if(event.keyCode==select_search_key) {
+			sb = document.querySelector('input[name="q"]');
+			sb.select();
+		}
 	} else if(event.keyCode==9) {
 		document.selectedResultId=0
 		selectResult(0)
