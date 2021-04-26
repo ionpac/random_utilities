@@ -75,7 +75,7 @@ document.onkeyup=function(event){
 		if(event.keyCode >= 49 && event.keyCode <= 57) {
 			// number keys
 			selectResult(event.keyCode-49)
-		} else if(event.code == ArrowUp) {
+		} else if(event.keyCode==38) {
 			// up
 			selectResult(document.selectedResultId-1)
 		} else if (event.keyCode==40) {
