@@ -2,7 +2,7 @@ resultElementSelector = "div h3.LC20lb"
 
 // left: 37, up: 38, right: 39, down: 40
 var keys = {38: 1, 40: 1};
-var select_search_key = 76; // L
+var select_search_key = "l";
 
 function preventDefault(e) {
 	e.preventDefault();
@@ -63,7 +63,7 @@ function isSearchBarFocused() {
 }
 
 document.addEventListener("keyup", event => {
-	if(event.keyCode==27) {
+	if(event.key == "escape") {
 		//escape
 		document.selectedResultId=null
 		rp = document.getElementById("result-pointer")
@@ -75,13 +75,13 @@ document.addEventListener("keyup", event => {
 		if(event.keyCode >= 49 && event.keyCode <= 57) {
 			// number keys
 			selectResult(event.keyCode-49)
-		} else if(event.keyCode==38) {
+		} else if(event.key == "ArrowUp") {
 			// up
 			selectResult(document.selectedResultId-1)
-		} else if (event.keyCode==40) {
+		} else if (event.key == "ArrowDown") {
 			// down
 			selectResult(document.selectedResultId+1)
-		} else if (event.keyCode==13) {
+		} else if (event.key == "Enter") {
 			// enter
 			rp = document.getElementById("result-pointer")
 			if(rp != null) {
@@ -94,11 +94,11 @@ document.addEventListener("keyup", event => {
 					document.location = url
 				}
 			}
-		} else if(event.keyCode==select_search_key) {
+		} else if(event.key == select_search_key) {
 			sb = document.querySelector('input[name="q"]');
 			sb.select();
 		}
-	} else if (event.keyCode==9) {
+	} else if (event.key == "Tab") {
 		document.selectedResultId=0
 		selectResult(0)
 		disableScroll()
