@@ -1,6 +1,6 @@
 scrollPercentage = 0.5;
 
-document.onkeyup=function(event){
+document.addEventListener("keyup", event => {
     if (event.shiftKey) {
         if (event.key == "PageDown") {
             scrollBy(0, scrollPercentage * window.innerHeight);
@@ -8,4 +8,4 @@ document.onkeyup=function(event){
             scrollBy(0, -scrollPercentage * window.innerHeight);
         }
     }
-}
+});

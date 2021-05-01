@@ -62,7 +62,7 @@ function isSearchBarFocused() {
 	return document.activeElement.name == "q"
 }
 
-document.onkeyup=function(event){
+document.addEventListener("keyup", event => {
 	if(event.keyCode==27) {
 		//escape
 		document.selectedResultId=null
@@ -103,7 +103,7 @@ document.onkeyup=function(event){
 		selectResult(0)
 		disableScroll()
 	}
-}
+});
 if(document.selectedResultId==null) {
 	document.selectedResultId=0
 	selectResult(0)
