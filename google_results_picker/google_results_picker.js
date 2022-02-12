@@ -1,8 +1,9 @@
-resultElementSelector = "div h3.LC20lb"
+resultElementSelector = "div h3.LC20lb";
+style_to_give_result = "background: #b4edd4";
 
 // left: 37, up: 38, right: 39, down: 40
 var keys = {38: 1, 40: 1};
-var select_search_key = "l";
+var select_search_key = 76; // L
 
 function preventDefault(e) {
 	e.preventDefault();
@@ -49,12 +50,12 @@ function selectResult(newId){
 	
 	rp = document.getElementById("result-pointer")
 	if(rp != null){
-		rp.remove()
+	  rp.parentElement.innerHTML = rp.innerHTML;
 	}
 	document.selectedResultId=newId
 	el = els[newId]
 	lnk = el.firstElementChild
-	el.innerHTML = "<div id=\"result-pointer\" style=\"position:absolute;left:-15px;\">&gt;</div>" + el.innerHTML
+	el.innerHTML = "<span id=\"result-pointer\" style=\""+style_to_give_result+"\">" + el.innerHTML + "</span>"
 	el.scrollIntoView({block: "center", behavior: "auto"});
 }
 
@@ -62,8 +63,8 @@ function isSearchBarFocused() {
 	return document.activeElement.name == "q"
 }
 
-document.addEventListener("keyup", event => {
-	if(event.key == "escape") {
+document.onkeyup=function(event){
+	if(event.keyCode==27) {
 		//escape
 		document.selectedResultId=null
 		rp = document.getElementById("result-pointer")
@@ -75,13 +76,13 @@ document.addEventListener("keyup", event => {
 		if(event.keyCode >= 49 && event.keyCode <= 57) {
 			// number keys
 			selectResult(event.keyCode-49)
-		} else if(event.key == "ArrowUp") {
+		} else if(event.keyCode==38) {
 			// up
 			selectResult(document.selectedResultId-1)
-		} else if (event.key == "ArrowDown") {
+		} else if (event.keyCode==40) {
 			// down
 			selectResult(document.selectedResultId+1)
-		} else if (event.key == "Enter") {
+		} else if (event.keyCode==13) {
 			// enter
 			rp = document.getElementById("result-pointer")
 			if(rp != null) {
@@ -94,16 +95,16 @@ document.addEventListener("keyup", event => {
 					document.location = url
 				}
 			}
-		} else if(event.key == select_search_key) {
+		} else if(event.keyCode==select_search_key) {
 			sb = document.querySelector('input[name="q"]');
 			sb.select();
 		}
-	} else if (event.key == "Tab") {
+	} else if (event.keyCode==9) {
 		document.selectedResultId=0
 		selectResult(0)
 		disableScroll()
 	}
-});
+}
 if(document.selectedResultId==null) {
 	document.selectedResultId=0
 	selectResult(0)
