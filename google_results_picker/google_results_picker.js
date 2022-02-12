@@ -16,6 +16,11 @@ function preventDefaultForScrollKeys(e) {
 	}
 }
 
+function isInAnswers(element) {
+    if (element.id && element.id.includes("WEB_ANSWERS")) return true;
+    return element.parentNode && isInAnswers(element.parentNode);
+}
+
 // modern Chrome requires { passive: false } when adding event
 var supportsPassive = false;
 try {
@@ -40,7 +45,7 @@ function enableScroll() {
 
 function selectResult(newId){
 	els = Array.from(document.querySelectorAll(resultElementSelector)).filter(function isValid(el) {
-		return el == null || !el.hasAttribute('decode-data-ved') && isValid(el.parentElement) // ignore results in "asked questions"
+		return el == null || !el.hasAttribute('decode-data-ved') && !isInAnswers(el) // ignore results in "asked questions"
 	});
 	
 	if(newId >= els.length)
