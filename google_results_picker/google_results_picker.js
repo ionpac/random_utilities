@@ -73,9 +73,9 @@ document.onkeyup=function(event){
 		//escape
 		document.selectedResultId=null
 		rp = document.getElementById("result-pointer")
-		if(rp != null){
-			rp.remove()
-		}
+    if(rp != null){
+      rp.parentElement.innerHTML = rp.innerHTML;
+    }
 		enableScroll()
 	} else if(document.selectedResultId != null && !isSearchBarFocused()) {
 		if(event.keyCode >= 49 && event.keyCode <= 57) {
