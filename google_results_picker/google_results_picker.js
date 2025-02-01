@@ -16,8 +16,9 @@ function preventDefaultForScrollKeys(e) {
 	}
 }
 
+// detects if result is in the web answers area
 function isInAnswers(element) {
-    if (element.id && element.id.includes("WEB_ANSWERS")) return true;
+    if (element.classList && element.classList.contains("related-question-pair")) return true;
     return element.parentNode && isInAnswers(element.parentNode);
 }
 
@@ -101,7 +102,7 @@ document.onkeyup=function(event){
 				}
 			}
 		} else if(event.keyCode==select_search_key) {
-			sb = document.querySelector('input[name="q"]');
+			sb = document.querySelector('textarea[name="q"]');
 			sb.select();
 		}
 	} else if (event.keyCode==9) {
